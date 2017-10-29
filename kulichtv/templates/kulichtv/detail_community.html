@@ -1,0 +1,27 @@
+{% extends 'kulichtv/base.html' %}
+
+    {% block title %} {{ community.name }} {% endblock %}
+
+      {% block typelist%}
+
+      {% endblock %}
+        {% block content %}
+      <div class="row">
+        <div class="col-lg-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">{{ community.name }}</a>
+              </h4>
+              <p class="card-text">{{ community.descr }}</p>
+              <p>Our rules:</p>
+              <p class="card-text">{{ community.rules }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    {% endblock %}

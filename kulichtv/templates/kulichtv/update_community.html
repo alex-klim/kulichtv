@@ -1,0 +1,8 @@
+{% extends 'kulichtv/base.html' %}
+    {% block title %}Update Community{% endblock %}
+    {% block content %}
+    <form method='post' enctype="multipart/form-data">{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Refresh the kitten!"/>
+    </form>
+    {% endblock %}
