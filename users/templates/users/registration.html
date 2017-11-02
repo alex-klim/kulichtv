@@ -1,0 +1,8 @@
+{% extends 'users/base.html' %}
+{% block title %} Registration page {% endblock %}
+    {% block content %}
+    <form action="{% url 'register_user' %}" method='post' enctype="multipart/form-data">{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="pet the kitten"/>
+    </form>
+    {% endblock %}

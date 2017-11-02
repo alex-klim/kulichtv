@@ -52,4 +52,6 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['games'] = Game.objects.all()
+        context['is'] = self.request.user.is_authenticated()
         return context
+    

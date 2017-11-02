@@ -38,7 +38,6 @@ class Community(models.Model):
     name = models.CharField(max_length=50, blank=False)
     descr = models.TextField(max_length=500)
     rules = models.TextField(max_length=300)
-    users = models.ManyToManyField(User)
 
     class Meta:
         verbose_name_plural = "Communities"

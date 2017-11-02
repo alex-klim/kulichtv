@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'imagekit',
     'kulichtv',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -78,9 +79,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'kulichdb',
+    'NAME': 'finaldb',
     'USER': 'postgreuser',
-    'PASSWORD': 'password',
+    'PASSWORD': '',
     'HOST': '', # Set to empty string for localhost.
     'PORT': '', # Set to empty string for default.
     }
@@ -128,3 +129,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+AUTH_USER_MODEL = 'users.CustomUser'
+
+request_token_url = 'https://api.twitter.com/oauth/request_token'
+access_token_url = 'https://api.twitter.com/oauth/access_token'
+authenticate_url = 'https://api.twitter.com/oauth/authorize'
+
+consumer_key = 'oops'
+consumer_secret = 'oops'
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+AUTHENTICATION_BACKENDS = ['users.backend.CustomBackend']

@@ -16,14 +16,20 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from kulichtv import views
+from users import views as uviews
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/$', views.IndexView.as_view(), name='index'),
+    url(r'^register/$', uviews.UserRegistrationView.as_view(), name='registration'),
+    url(r'^login/$', uviews.UserLoginView.as_view(), name='login_user'),
+    url(r'^logout/$', uviews.dismissed, name='logout'),
     url(r'^communities/add/$', views.CommunityAddView.as_view(), name='add_community'),
     url(r'^communities/$', views.CommunityView.as_view(), name='communities'),
     url(r'^communities/(?P<pk>[0-9]+)/$', views.CommunityDetailView.as_view(), name='details_community'),
     url(r'^communities/(?P<pk>[0-9]+)/edit/$', views.CommunityUpdateView.as_view(), name='update_community'),
+    url(r'^auth/$', uviews.twitter_login, name='auth'),
+    url(r'^auth/twitter/callback/$', uviews.twitter_authenticated),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
