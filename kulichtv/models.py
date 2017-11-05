@@ -10,7 +10,7 @@ class Profile(models.Model):
 
     def get_pic_url(instance, filename):
         return os.path.join('profiles', str(instance.nickname), filename)
-    
+
     nickname = models.CharField(max_length=40)
     pic = models.ImageField(upload_to=get_pic_url, default='None/none.jpg')
 
@@ -22,7 +22,7 @@ class Game(models.Model):
 
     def get_pic_url(instance, filename):
         return os.path.join('games', str(instance.title)+'.jpg')
-    
+
     title = models.CharField(max_length=40, blank=False)
     descr = models.TextField(max_length=275)
     pic = ProcessedImageField(upload_to=get_pic_url,
@@ -57,3 +57,4 @@ class Community(models.Model):
 #         primary_key=True,
 #     )
 #     communities = models.ManyToManyField(Community)
+

@@ -14,7 +14,7 @@ class VideoCamera(object):
         return jpeg.tobytes()
 
 
-def gen(camera):
+def stream_response_generator(camera):
     while True:
         frame = camera.get_frame()
         yield (b'--frame\r\n'

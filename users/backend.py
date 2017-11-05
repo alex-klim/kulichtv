@@ -1,6 +1,6 @@
 from core import settings
 from .models import CustomUser
-from django.contrib.auth.backends import ModelBackend 
+from django.contrib.auth.backends import ModelBackend
 
 class CustomBackend(ModelBackend):
 
@@ -17,6 +17,7 @@ class CustomBackend(ModelBackend):
 
     def get_user(self, nickname):
         try:
-            return CustomUser.objects.get(nickname=nickname)
+            return CustomUser.objects.get(pk=nickname)
         except CustomUser.DoesNotExist:
             return None
+

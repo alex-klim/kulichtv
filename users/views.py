@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import DetailView, TemplateView, FormView, ListView, UpdateView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
 
 import oauth2 as oauth
 from urllib.parse import parse_qsl
@@ -26,7 +26,7 @@ class UserLoginView(FormView):
         form.save()
         return super(CommunityAddView, self).form_valid(form)
 
-    
+
 class UserRegistrationView(FormView):
     template_name = 'users/registration.html'
     model = CustomUser
@@ -35,6 +35,7 @@ class UserRegistrationView(FormView):
     def form_valid(self, form):
         form.save()
         return super(CommunityAddView, self).form_valid(form)
+
 
 def twitter_login(request):
     if request.user.is_active:
@@ -75,16 +76,16 @@ def twitter_authenticated(request):
     except CustomUser.DoesNotExist:
         # When creating the user I just use their screen_name@twitter.com
         # for their email and the oauth_token_secret for their password.
-        # These two things will likely never be used. Alternatively, you 
-        # can prompt them for their email here. Either way, the password 
+        # These two things will likely never be used. Alternatively, you
+        # can prompt them for their email here. Either way, the password
         # should never be used.
         user = CustomUser.objects.create_user(access_token['screen_name'])
 
         user.oauth_token = access_token['oauth_token']
         user.oauth_secret = access_token['oauth_token_secret']
         user.save()
-    
-    # Authenticate the user and log them in using Django's pre-built 
+
+    # Authenticate the user and log them in using Django's pre-built
     # functions for these things.
     user = authenticate(nickname=access_token['screen_name'])
     print(user)
@@ -97,3 +98,4 @@ def twitter_authenticated(request):
 def dismissed(request):
     logout(request)
     return HttpResponseRedirect('/index/')
+

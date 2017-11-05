@@ -2,7 +2,7 @@ from django.http import StreamingHttpResponse
 from django.views.generic import DetailView, TemplateView, FormView, ListView, UpdateView
 
 from .forms import *
-from .stream import VideoCamera, gen
+from .stream import VideoCamera, stream_response_generator
 
 
 def video_feed(request):
@@ -21,6 +21,16 @@ class CommunityAddView(FormView):
     def form_valid(self, form):
         form.save()
         return super(CommunityAddView, self).form_valid(form)
+
+
+class GameAddView(FormView):
+    template_name = 'kulichtv/add_game.html'
+    form_class = GamePostForm
+    success_url = '/index/'
+
+    def form_valid(self, form):
+        form.save()
+        return super(GameAddView, self).form_valid(form)
 
 
 class CommunityView(ListView):
@@ -54,4 +64,4 @@ class IndexView(ListView):
         context['games'] = Game.objects.all()
         context['is'] = self.request.user.is_authenticated()
         return context
-    
+

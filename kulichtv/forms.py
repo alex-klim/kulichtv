@@ -7,6 +7,12 @@ class CommunityPostForm(forms.ModelForm):
         fields = '__all__'
 
 
+class GamePostForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = '__all__'
+
+
 class ProfilePostForm(forms.ModelForm):
     class Meta:
         model = Profile

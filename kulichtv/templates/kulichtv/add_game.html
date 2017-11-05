@@ -1,0 +1,8 @@
+{% extends 'kulichtv/base.html' %}
+{% block title %} Add Game {% endblock %}
+    {% block content %}
+    <form action="{% url 'add_game' %}" method='post' enctype="multipart/form-data">{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="pet the kitten"/>
+    </form>
+    {% endblock %}

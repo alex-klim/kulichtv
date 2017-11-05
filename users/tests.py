@@ -1,3 +1,9 @@
-from django.test import TestCase
+from django.test import TestCase, Client
+import unittest
 
-# Create your tests here.
+class TestTwitterAuthView(unittest.TestCase):
+    def setup(self):
+        self.client = Client()
+
+    def test_details(self):
+        pass
