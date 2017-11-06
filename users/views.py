@@ -27,19 +27,20 @@ class UserLoginView(FormView):
         return super(CommunityAddView, self).form_valid(form)
 
 
-class UserRegistrationView(FormView):
-    template_name = 'users/registration.html'
-    model = CustomUser
-    form_class = UserCreationForm
-
-    def form_valid(self, form):
-        form.save()
-        return super(CommunityAddView, self).form_valid(form)
+#class UserRegistrationView(FormView):
+#    template_name = 'users/registration.html'
+#    model = CustomUser
+#    form_class = UserCreationForm
+#
+#    def form_valid(self, form):
+#        form.save()
+#        return super(CommunityAddView, self).form_valid(form)
 
 
 def twitter_login(request):
+#    import pudb; pudb.set_trace()  # XXX BREAKPOINT
     if request.user.is_active:
-        HttpResponseRedirect('/index')
+        return HttpResponseRedirect('/index')
 
     # Get a request token from Twitter.
     resp, content = client.request(request_token_url, "GET")

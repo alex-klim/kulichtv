@@ -10,6 +10,11 @@ class VideoCamera(object):
 
     def get_frame(self):
         success, image = self.video.read()
+        if not success:
+            print("failed to read image")
+            return
+#        import pudb; pudb.set_trace()  # XXX BREAKPOINT
+
         ret,jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
 

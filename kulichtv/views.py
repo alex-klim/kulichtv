@@ -5,8 +5,8 @@ from .forms import *
 from .stream import VideoCamera, stream_response_generator
 
 
-def video_feed(request):
-    return StreamingHttpResponse(gen(VideoCamera()),
+def stream_feed(request):
+    return StreamingHttpResponse(stream_response_generator(VideoCamera()),
                         content_type='multipart/x-mixed-replace; boundary=frame')
 
 # class IndexView(TemplateView):

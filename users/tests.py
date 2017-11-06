@@ -1,9 +1,9 @@
 from django.test import TestCase, Client
-import unittest
 
-class TestTwitterAuthView(unittest.TestCase):
-    def setup(self):
-        self.client = Client()
+
+class TestTwitterAuthView(TestCase):
+    def setUpTestData(cls):
+        cls.client = Client()
 
     def test_details(self):
         pass
