@@ -1,4 +1,3 @@
-from collections import Counter
 from django.test import TestCase
 from .models import *
 from django.urls import reverse
